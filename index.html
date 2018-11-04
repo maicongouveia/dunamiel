@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <title>Dunamiel - IT Consulting</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	
+	<!-- Font -->	
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CPoppins:400,500" rel="stylesheet">
+	
+	<!-- CSS -->
+	<link href="assets/css/ionicons.css" rel="stylesheet">
+	<link href="assets/css/jquery.classycountdown.css" rel="stylesheet"/>
+	<link href="assets/css/styles.css" rel="stylesheet">
+	<link href="assets/css/responsive.css" rel="stylesheet">
+	<link href="assets/css/modal.css" rel="stylesheet">
+	
+	
+</head>
+<body>	
+	<div class="main-area-wrapper">
+		<div class="main-area center-text" style="background-image:url(assets/img/bg.jpg);">
+			
+			<div class="display-table">
+				<div class="display-table-cell">
+					
+					<h1 class="title"><b>Em breve</b></h1>
+					<p class="desc font-white"><b>Nosso site atualmente está em manutenção.<br>Nos em breve voltaremos.<br>Obrigado pela paciência.</b></p>
+					
+					<div id="normal-countdown" data-date="2018/11/09"></div>
+					
+                    <a class="notify-btn" id='contactUs-btn' href="#"><b>FALE CONOSCO</b></a>
+                    
+                    <!-- The Modal -->
+                    <div id="contactForm" class="modal">
+                    
+						<!-- Modal content -->
+						<div class="modal-content">
+							<div class="modal-header">
+								<span class="close">&times;</span>
+								<h2>Fale Conosco</h2>
+							</div>
+							<div class="modal-body">
+								<form id='form'>
+									<input type="text" id="name" name="name" placeholder="Nome Completo">
+									<input type="text" id="email" name="email" placeholder="Email">								
+									<input type="text" id="phone" name="phone" placeholder="Telefone" maxlength="15">
+									<textarea id="message" name="message" placeholder="Escreva a sua mensagem aqui..." style="height:200px"></textarea>
+																
+									<button id='sendEmail'>ENVIAR</button>
+								</form>
+							</div>
+						</div>
+                    
+					</div>
+					<br>
+					<img class='logo-footer' src="assets/img/logo.png" alt="logo">
+
+					<!-- <ul class="social-btn">
+						<li class="list-heading">Follow us for update</li>
+						<li><a href="#"><i class="ion-social-facebook"></i></a></li>
+						<li><a href="#"><i class="ion-social-twitter"></i></a></li>
+						<li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+						<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+						<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
+					</ul> -->
+					
+				</div><!-- display-table -->
+			</div><!-- display-table-cell -->
+		</div><!-- main-area -->
+	</div><!-- main-area-wrapper -->
+	
+	
+	<!-- SCIPTS -->
+	<script src="assets/js/jquery-3.1.1.min.js"></script>	
+	<script src="assets/js/modal.js"></script>
+	<script src="assets/js/jquery.countdown.min.js"></script>	
+	<script src="assets/js/scripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+				$('#phone').mask('(00) 00000-0000');
+		});
+
+		$('#sendEmail').click(function(){
+			$.ajax({
+				url: "assets/mail/",
+				type: "POST",
+				data: $('#form').serialize(),
+				beforeSend:function (){
+					if(
+						$('#name').val()== ""||
+						$('#email').val() == "" ||
+						$('#phone').val() == "" ||
+						$('#message').val() == ""
+						)
+						alert("Preencha corretamente o formulário");						
+
+				},
+				success: function (result) {
+					alert("Email enviado com sucesso")
+				},
+				error: function (result) {
+					alert("Problema ao enviar email") 
+				}
+			});
+		})
+	</script>
+	
+</body>
+</html>
